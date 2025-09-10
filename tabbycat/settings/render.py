@@ -9,8 +9,8 @@ from sentry_sdk.integrations.redis import RedisIntegration
 
 from .core import TABBYCAT_VERSION
 
-# ==============================================================================
-# Render per https://render.com/docs/deploy-django
+# ============================================================================== 
+# Render per https://render.com/docs/deploy-django 
 # ==============================================================================
 
 # Store Tab Director Emails for reporting purposes
@@ -30,7 +30,7 @@ RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
-# ==============================================================================
+# ============================================================================== 
 # Postgres
 # ==============================================================================
 
@@ -43,7 +43,7 @@ DATABASES = {
     )
 }
 
-# ==============================================================================
+# ============================================================================== 
 # Redis
 # ==============================================================================
 
@@ -72,8 +72,23 @@ CHANNEL_LAYERS = {
     },
 }
 
+# ============================================================================== 
+# Static files configuration 
 # ==============================================================================
-# Sentry
+
+# Static files (CSS, JavaScript, images)
+STATIC_URL = '/static/'
+
+# Directory for static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),  # Adjust if your static files are located elsewhere
+]
+
+# Directory to collect static files during the `collectstatic` command
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# ============================================================================== 
+# Sentry 
 # ==============================================================================
 
 if not os.environ.get('DISABLE_SENTRY'):
